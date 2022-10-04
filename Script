@@ -1,0 +1,102 @@
+import java.util.Scanner;
+
+public class Main {
+    public static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        while (true) {
+
+            menu();
+            char choice = sc.next().charAt(0);
+
+            if (choice == '1') {
+                addition(numOne(), numTwo());
+            } else if (choice == '2') {
+                checkLetterInString(word(), letter());
+            } else if (choice == '3') {
+                reverseString(word());
+            } else if (choice == '4') {
+                sumOfAllNumbersInString(word());
+            } else if (choice == 'e') {
+                shutDown();
+            }
+        }
+    }
+
+    public static void menu() {
+        System.out.println("""
+                \nchoose between the alternative
+                [1] Add two numbers
+                [2] Count letters in a string
+                [3] Reverse a string
+                [4] Calculate sum of all numbers present in a string 
+                [e] Shutdown 
+                """);
+    }
+
+    public static double numOne() {
+        System.out.print("First number: ");
+        double numOne = sc.nextInt();
+        return numOne;
+    }
+
+    public static double numTwo() {
+        System.out.print("Second number: ");
+        double numTwo = sc.nextInt();
+        return numTwo;
+    }
+
+    public static String word() {
+        System.out.print("Enter a word: ");
+        String word = sc.next();
+        return word;
+    }
+
+    public static char letter() {
+        System.out.print("Enter a letter: ");
+        char letter = sc.next().charAt(0);
+        return letter;
+    }
+
+    public static void addition(double numOne, double numTwo) {
+        System.out.println("Sum: " + (numOne + numTwo));
+    }
+
+    public static void checkLetterInString(String word, char letter) {
+        int letterInString = 0;
+
+        for (int i = 0; i < word.length(); i++) {
+            if (word.charAt(i) == letter) {
+                letterInString++;
+            }
+        }
+        System.out.println("There are " + letterInString + " " + letter + " in the word " + word);
+    }
+
+    public static void reverseString(String word) {
+        char[] characters = word.toCharArray();
+        String rev = "";
+
+        for (int i = word.length() - 1; i >= 0; i--) {
+            rev += characters[i];
+        }
+        System.out.println("Reverse: " + rev);
+    }
+
+    public static void sumOfAllNumbersInString(String word) {
+        int sum = 0;
+
+        for (int i = 0; i < word.length(); i++) {
+            if (Character.isDigit(word.charAt(i))) {
+                int num = Character.getNumericValue(word.charAt(i));
+                sum += num;
+            }
+        }
+        System.out.println("sum of all numbers: " + sum);
+    }
+
+    public static void shutDown() {
+        System.out.println("Bye, have a nice day:)");
+        System.exit(0);
+    }
+}
